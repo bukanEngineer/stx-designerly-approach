@@ -11,7 +11,7 @@ Start with the supplied mobile web task. If no target is supplied, ask which scr
 
 ## Workspace boundaries
 
-- Follow the project's instructions and supported write workflow. In the StraitsX design-sandbox, use its catalog and permitted tools. Do not bypass guards to change global CSS, document metadata or shared component internals.
+- Follow the project's instructions and build/preview workflow. Locate the application shell and shared components before changing global CSS or document metadata.
 - Identify who owns a fix: screen layout, application shell or design-system package. Apply changes within the authorised workspace; report changes needed in a package or shell that is outside it.
 - Use existing design-system components, tokens and supported props. Treat CSS below as patterns to evaluate, not a global stylesheet to paste. Verify existing styles and avoid duplicate fixes.
 - Apply each change only to an observed problem or an applicable requirement. Preserve browser feedback, text selection, scrolling, zoom and link menus unless a specific control needs a scoped alternative.
@@ -239,7 +239,7 @@ Match the value to the color at the very top of your page — the header backgro
 
 Some checks can be approximated in emulation; it is not a substitute for hardware testing. Sticky hover, the tap highlight, the URL bar's effect on `vh`, input zoom, the click delay, overscroll, safe areas, the software keyboard — every one is a real-hardware behavior.
 
-- Use the project’s device-testing setup, such as remote debugging or an approved local preview. Do not expose the sandbox server to the network merely to run this checklist.
+- Use the project’s device-testing setup, such as remote debugging or an approved local preview. Do not change server network exposure automatically to run this checklist.
 - iOS: Safari → Develop → the device. Android: `chrome://inspect`.
 - Test on a phone that's a few years old, not the newest one on your desk. Test with the keyboard open. Test in landscape once.
 - Test as an installed PWA if that's a target; standalone mode changes viewport, safe areas, and status bar behavior.
@@ -254,7 +254,7 @@ Inspect the existing app shell before changing it. Choose only the items that ma
 - For edge-to-edge layouts, consider `viewport-fit=cover` and safe-area padding on the shell-owned header, footer and sheets. Insets are device geometry and can be combined with the design-system spacing tokens; they are not arbitrary replacements for the spacing scale.
 - Choose `dvh` or `svh` for the intended browser-chrome behaviour. Neither alone guarantees that a software keyboard will leave fixed actions visible.
 - Where supported and intended, `interactive-widget=resizes-content` requests resizing of both layout and visual viewports when the keyboard opens. This is not the default iOS Safari behaviour and is not a cross-browser keyboard fix. Check the target browser support and test with the keyboard open. See [Chrome’s viewport explanation](https://developer.chrome.com/blog/viewport-resize-behavior).
-- Preserve input readability and prevent unwanted focus zoom through the design-system input typography. Do not apply a blanket font override to shared components from a sandbox screen.
+- Preserve input readability and prevent unwanted focus zoom through the design-system input typography. Do not apply a blanket font override to shared components from an individual screen.
 - Only advertise light and dark colour schemes the app actually supports. Resolve theme colours from the application’s design tokens into values accepted by metadata; do not copy sample hex colours blindly.
 - Keep tap feedback and text selection unless an equivalent, scoped control behaviour is present. Change overscroll behaviour only where needed.
 - Preserve pinch zoom on gesture surfaces. For custom horizontal drags, consider `pan-y pinch-zoom`; for vertical handles, `pan-x pinch-zoom`. Use `touch-action: none` only for a narrowly scoped surface that truly requires it, and provide accessible alternatives. See [touch-action documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action).

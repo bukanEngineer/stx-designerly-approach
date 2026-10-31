@@ -1,6 +1,6 @@
 # stx-designerly-approach
 
-Portable agent skill for building StraitsX UI, built from the design-sandbox repo. Does not depend on the sandbox server or gate.
+Portable agent skills for creating and reviewing StraitsX UI using the `stxdesign-sandbox` component package and official Storybook.
 
 | Skill | Purpose |
 |---|---|
@@ -24,15 +24,13 @@ scripts/install.sh claude     # or pick one
 
 ## Use for design work
 
-For a designer building a working prototype, the recommended starting point is the **design-sandbox repo**:
+1. Open a React project with `stxdesign-sandbox` installed, or set up a prototype project and install the package there. Follow the package README for runtime requirements and setup.
+2. Install these skills for your agent using the commands above.
+3. Ask the agent to use `stx-designerly-approach` for your task. It uses the package's components, the skill's design guidance and your project's build/preview workflow.
 
-1. Clone the design-sandbox repo, follow its README to set it up, and run `npm install` and `npm run dev` there. The sandbox declares `stxdesign-sandbox` as a dependency; installing the sandbox dependencies installs the package too.
-2. Install this skill for your agent using the commands above. Follow the sandbox's agent setup instructions to connect your agent and use its workspace tools.
-3. Open the sandbox workspace and ask the agent to use `stx-designerly-approach` for your design task. The skill supplies design guidance; the sandbox supplies the preview environment and components.
+The [official Storybook](https://stxdesign-sandbox.vercel.app) provides component examples and guidance. Verify available components and props against the installed package, since Storybook may describe a different version.
 
-The [official Storybook](https://stxdesign-sandbox.vercel.app) provides component examples and guidance. When building, check the installed package and sandbox catalog for the available components and props, since Storybook may describe a different version.
-
-The package and sandbox application are **not included** in this skill repository. For an existing React project, install `stxdesign-sandbox` in that project instead and follow its conventions. For design reviews, copy and flow guidance, the skill's references can be used without installing either; component availability must then be verified separately.
+The component package is not bundled with these skills. Design reviews, copy and flow guidance can use the included references without installing it; component availability must then be verified separately. Missing tooling is not a reason to recreate package components by hand.
 
 ## Maintain
 
@@ -55,6 +53,6 @@ After building a screen, ask the agent to use `break-ui` on that screen. It crea
 
 ## Check mobile web behaviour
 
-Ask the agent to use `mobile-native` on a mobile screen or interaction. It checks viewport sizing, touch feedback, keyboards, safe areas and scrolling, using the sandbox’s supported workflow. Global shell or shared-package changes outside the workspace are reported separately, and checks requiring a real phone remain explicitly pending until tested.
+Ask the agent to use `mobile-native` on a mobile screen or interaction. It checks viewport sizing, touch feedback, keyboards, safe areas and scrolling, using the project’s build/preview workflow. Global shell or shared-package changes outside the workspace are reported separately, and checks requiring a real phone remain explicitly pending until tested.
 
 `mobile-native` was originally created by [Emil Kowalski](https://github.com/emilkowalski/skills/tree/main/skills/mobile-native). See the adaptation’s [attribution](skills/mobile-native/ATTRIBUTION.md) and preserved [MIT licence](skills/mobile-native/LICENSE).

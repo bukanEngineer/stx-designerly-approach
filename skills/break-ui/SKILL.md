@@ -10,8 +10,8 @@ Stress-test an existing component or screen using realistic worst-case data. Thi
 
 ## StraitsX workspace rules
 
-- Follow the project's instructions and supported write workflow. In the design-sandbox, use its available catalog, project and preview tools; do not bypass its guards or modify shared design-system internals.
-- Use the installed design-system components and supported tokens for fixtures and test controls. Prefer an existing fixture selector, prototype route or sandbox state mechanism over inserting a new control. Keep test controls outside the product flow and out of production.
+- Follow the project's instructions, fixture conventions and build/preview workflow. Test the existing components rather than recreating their appearance; report changes needed in shared design-system internals separately.
+- Use the installed design-system components and supported tokens for fixtures and test controls. Prefer an existing fixture selector, prototype route or existing state mechanism over inserting a new control. Keep test controls outside the product flow and out of production.
 - For StraitsX amounts, copy and layouts, use the corresponding rules in `../stx-designerly-approach/references/` when available. Financial formatting follows those rules, not the generic currency or locale examples in the catalog. If those references are unavailable, follow the project's financial rules and report any unresolved formatting assumptions.
 - Test fixture data only. Do not send a payout, transfer, trade or other real financial action to reproduce a case.
 - Fixes must use supported component APIs and permitted layout styles. If a fix requires changing the design-system package, identify that dependency instead of inventing a prop or overriding restricted styles.

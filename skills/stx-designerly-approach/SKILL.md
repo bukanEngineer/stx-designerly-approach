@@ -9,18 +9,17 @@ Build UI from the `stxdesign-sandbox` design system and the StraitsX rules below
 
 ## Choose the workspace
 
-- For prototyping, use the design-sandbox workspace when available. Follow its setup, project instructions and MCP tools; it installs and manages `stxdesign-sandbox` as a dependency. Use the sandbox's component catalog and permitted write workflow when available.
-- For an existing React project, use its installed `stxdesign-sandbox` package and project conventions. The package supplies the React components and tokens; it is not bundled with this skill.
-- For design critique, copy or flow guidance, use the references in this skill without requiring the sandbox or the package. State when component availability cannot be verified.
+- For prototypes and existing React products, use the project's installed `stxdesign-sandbox` package and project conventions. The package supplies React components and tokens; it is not bundled with this skill.
+- For critique, copy or flow guidance, use this skill's references without requiring the package. State when component availability cannot be verified.
 
-When implementing UI, check that the design system is available in the workspace. If it is missing, explain the setup needed and follow the user's instructions for installing dependencies. In an ordinary React app, import `stxdesign-sandbox/global.css` once at the app entry and import components by name. Follow the sandbox's own rules instead when working inside it.
+When implementing UI, check that the package is available in the project. If it is missing, explain the dependency needed and follow the user's instructions for installing it. Import `stxdesign-sandbox/global.css` once at the app entry and import components by name. Use the project's existing build and preview workflow.
 
 ## Finding components and props
 
-- Use the official Storybook at https://stxdesign-sandbox.vercel.app for component examples and guidance. Prefer the sandbox catalog or other project design-system tools when available.
-- When implementing, verify component availability and props against the installed package and the sandbox catalog, if applicable; Storybook may describe a different version.
-- In a React project, inspect the installed package's `dist/index.d.ts` and component declarations for exact props, variants and slots; do not guess. Some controls are compound; consult the package README and declarations.
-- For design intent, read `references/components/<name>.md`. The guides describe intent; the project's installed package and available component catalog determine what can actually be used. If a desired capability is unavailable, explain the limitation rather than inventing a prop.
+- Use the official Storybook at https://stxdesign-sandbox.vercel.app for component examples and guidance.
+- Verify available exports and exact props against the installed package's `dist/index.d.ts`, component declarations and README. Some controls are compound; do not guess their API. Storybook may describe a different version.
+- For design intent, read `references/components/<name>.md`. The guides describe intent; the installed package determines what can actually be used. Explain unavailable capabilities rather than inventing props.
+- Do not recreate design-system controls from tokens, CSS or screenshots as a fallback for missing components or tooling. Report the limitation. If the user requests a visual mockup in a design tool, clearly distinguish its visual representations from working package components.
 
 ## Before designing
 
@@ -63,7 +62,7 @@ When implementing UI, check that the design system is available in the workspace
 
 1. Answer the two "before designing" questions.
 2. Read the topics above that apply and the guide for each component you plan to use.
-3. Verify component availability and props through the workspace tools or installed package, then build the screen using the workspace conventions and realistic sample data.
+3. Verify component availability and props against the installed package, then build the screen using the workspace conventions and realistic sample data.
 4. Build the non-default states (empty, loading, error, success) and the review/receipt step for risky actions.
 5. Typecheck and run the project's own checks. Look at the result in the browser if you can.
 
