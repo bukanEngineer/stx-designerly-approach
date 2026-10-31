@@ -7,6 +7,10 @@ TARGETS=("$@"); [ ${#TARGETS[@]} -eq 0 ] && TARGETS=(claude codex cursor)
 
 link() { # <skills dir>
   mkdir -p "$1"
+  # Remove dangling links to skills that were merged or removed from this repository.
+  for old in "$1"/*; do
+    [ -L "$old" ] && [ ! -e "$old" ] && case "$(readlink "$old")" in "$HERE"/skills/*) rm "$old"; echo "removed stale $old" ;; esac
+  done
   for s in "$HERE"/skills/*/; do
     n="$(basename "$s")"; ln -sfn "${s%/}" "$1/$n"; echo "linked $1/$n"
   done

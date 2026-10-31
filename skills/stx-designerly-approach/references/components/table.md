@@ -32,7 +32,7 @@ A structured grid for displaying multi-attribute datasets in rows and columns, s
 
 - **Interaction** : Rows may change background color on hover to assist with horizontal scanning.
 
-- Tables displaying data sets with more than 10 items should use pagination.
+- Choose data navigation by user task, not a row-count threshold. Use incremental/infinite loading for continuous chronological history browsing; use pagination when users need page navigation, stable page links or bounded result sets. See [history loading and recovery](../patterns.md#history-loading-and-recovery).
 
 - Left-align text in cells for readability; right-align numerical data for easier comparison.
 
@@ -42,4 +42,4 @@ A structured grid for displaying multi-attribute datasets in rows and columns, s
 
 - Usually placed right below Search, Filter and Sort, or Export CSV button.
 
-**Usage Example**
+Use the installed package's supported table composition; this guide does not prescribe data or loading props.

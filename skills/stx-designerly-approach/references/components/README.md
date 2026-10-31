@@ -1,6 +1,6 @@
 # Component Markdown Files
 
-Generated one clean Markdown file per component.
+Component design intent. Confirm every export, prop and capability using [Package authority](../package-api.md); these guides are not version-independent API documentation.
 
 - [Upload](upload.md)
 - [Top Navigation](top-navigation.md)

@@ -4,7 +4,7 @@ components: [Alert]
 
 # Alert
 
-An inline feedback component that communicates important information, status updates, or system messages within a page layout, with optional supporting detail, a contextual action, and dismissal behavior.
+Use inline feedback for a contextual condition, an asynchronous outcome or a persistent next step. Use field help for field validation, a toast for brief direct-action confirmation, and a modal for a decision that must block progress.
 
 ## Guidelines
 
@@ -30,34 +30,20 @@ An inline feedback component that communicates important information, status upd
 
 ---
 
-## Behavior
+## Supported composition
 
-- The alert does not manage its own visibility. Dismissal emits an event; the parent is responsible for removing the alert from view and for whether it stays dismissed across sessions.
+Read the installed Alert declaration and matching supported example before writing it; follow [Package authority](../package-api.md). Identify the actual message/title/detail interface, action slot and dismissal callback. Supply text through that interface rather than assuming arbitrary children will render. The terms below describe intent, not literal prop names or union values.
 
-- The component supports two layout densities driven by content length: single-line (title and detail on one row) and multi-line (detail wraps below the title). Layout is chosen by content, not set manually.
+Use the supported single action slot for a contextual next step, such as retry or viewing details. Confirm whether it accepts action configuration or a component, and use exactly that shape. Do not place a separate button beside the Alert to imitate an action or use an alert action as the main form submit. If the installed version lacks a needed slot, report the limitation and choose another supported composition.
 
-- Only one action is supported per alert. The action renders as a Link Button, positioned bottom or right depending on the button property.
+## Severity and dismissal
 
-- When both an action and the close icon are present, the action sits inline-left of the close icon (button=right) or below the detail with the close icon top-right (button=bottom).
+Match semantic intent to the installed variant: neutral information, successful outcome, warning needing attention, or critical error/blocker. Routine funding instructions are informational; a submitted request is not a success claim about settlement. Keep the text meaningful without colour and state the next step when action is needed.
 
-- The Critical variant may use sticky positioning when keeping the message in context is necessary or when an alert is injected into a page and could otherwise be missed. Reserve this for Critical only.
+Enable dismissal only when hiding the message will not conceal a required action or active blocker. Wire the supported dismissal event to parent visibility/state and decide when the message may reappear; displaying a close icon with no effect is a failure. Persistent blockers need an enduring explanation even if a supplementary notification can close. Verify dynamic announcements/focus through supported behaviour without stealing focus unnecessarily.
 
-- Alerts are programmatically focusable so attention can be moved to them when injected dynamically.
+## Compact and long messages
 
-- Keep copy short, actionable, and in clear language. Prefer a single sentence fragment for the detail where possible.
+For compact content, use a short message and one action without repeating the message in a title and detail. For longer content, use the supported title/detail or multiline treatment, keeping the explanation readable and the next step distinct. Verify the installed component's wrapping/action placement; do not assume a density or position prop exists.
 
-- When a title is present, don't paraphrase it in the detail — write the detail as if continuing from the title.
-
-- Use the variant that matches intent: Success for positive confirmation, Warning for conditions needing attention, Critical for errors or blocking issues, Info for neutral context.
-
-- Use the action for next steps, troubleshooting, or a "learn more" link — not as a primary form submit.
-
----
-
-## Placement
-
-- Place the alert inline within the page content, adjacent to the context it refers to, following normal document flow.
-
-- For responsive layouts the alert fills its container width.
-
-- Sticky positioning is an exception reserved for Critical alerts (see Behavior).
+Keep the Alert inline near its affected content and within the available width. Check long text, an action plus dismissal, and narrow viewports for overlap, clipped text and unreachable targets. Avoid forced single-line heights. Use the DS's built-in layout rather than overriding its internal padding, typography or colours. Put extensive instructions in the adjacent content area instead of stretching an alert into a second form.

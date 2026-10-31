@@ -28,6 +28,8 @@ A navigation control that lets users move through a paginated dataset by page nu
 
 ## Behavior
 
+Choose page navigation or continuous loading by the user task, not dataset size alone. See [history loading and recovery](../patterns.md#history-loading-and-recovery).
+
 - Truncation is shown using  `…`  when the number of pages exceeds the pagination display limit. By default  `…`  are shown after the  **5th page**  on large and medium viewports and after the  **2nd page**  on small and mobile viewports.
 
 - Clicking any link triggers an asynchronous content refresh.
@@ -38,4 +40,4 @@ A navigation control that lets users move through a paginated dataset by page nu
 
 - **Alignment** : Right-aligned or centered depending on the layout's primary content alignment.
 
-**Usage Example**
+Verify page size, responsive variants and navigation props against the installed package; the behaviour above is design intent.

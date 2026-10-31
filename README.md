@@ -4,9 +4,8 @@ Portable agent skills for creating and reviewing StraitsX UI using the `stxdesig
 
 | Skill | Purpose |
 |---|---|
-| `stx-designerly-approach` | Build and review StraitsX UI: setup, finding component props, principles, copy, numbers, layout, component guides, review checklist |
-| `break-ui` | Stress-test existing screens with realistic difficult data; originally by Emil Kowalski, adapted for StraitsX |
-| `mobile-native` | Improve mobile web touch, viewport, keyboard and scroll behaviour; originally by Emil Kowalski, adapted for StraitsX |
+| `stx-designerly-approach` | Build StraitsX UI: package authority, shared rules, transaction history, balance cards and funding/modal composition |
+| `stx-design-verify` | Post-build API, design-rule, rendered UI, worst-case data and mobile web verification; explicit read-only audits |
 
 ## Install (team)
 
@@ -20,13 +19,13 @@ scripts/install.sh claude     # or pick one
 |---|---|
 | Claude Code | `~/.claude/skills/` |
 | Codex | `~/.agents/skills/` |
-| Cursor | `~/.cursor/skills/` (requires a Cursor version with Agent Skills; older versions: copy `skills/stx-designerly-approach/SKILL.md` into `.cursor/rules/stx-designerly-approach.mdc`) |
+| Cursor | `~/.cursor/skills/` (requires a Cursor version with Agent Skills) |
 
 ## Use for design work
 
-1. Open a React project with `stxdesign-sandbox` installed, or set up a prototype project and install the package there. Follow the package README for runtime requirements and setup.
+1. Choose the process. For a React project (for example Vite), open one with `stxdesign-sandbox` installed, or set up a prototype project and install the package there (follow the package README). For a Paper file, point the agent at the file you are working on; it draws only the design system's components.
 2. Install these skills for your agent using the commands above.
-3. Ask the agent to use `stx-designerly-approach` for your task. It uses the package's components, the skill's design guidance and your project's build/preview workflow.
+3. Ask the agent to use `stx-designerly-approach` for your task, then `stx-design-verify`. The loop is build → verify → fix authorised issues → recheck affected areas. For a report without edits, explicitly request a read-only audit. Source/build checks and rendered checks are reported separately; unavailable checks stay unverified.
 
 The [official Storybook](https://stxdesign-sandbox.vercel.app) provides component examples and guidance. Verify available components and props against the installed package, since Storybook may describe a different version.
 
@@ -34,25 +33,21 @@ The component package is not bundled with these skills. Design reviews, copy and
 
 ## Maintain
 
-The knowledge in `skills/stx-designerly-approach/references/` is generated. Never edit it here.
+The bundled references are maintained in this repository. Edit shared design rules under `skills/stx-designerly-approach/references/`; the verification skill links to them rather than duplicating them. No external checkout is needed. Consumer package declarations and supported examples remain authoritative for actual API support.
 
 ```bash
-scripts/sync.sh [path-to-design-sandbox-repo]   # default: /Users/bong/Documents/design-sandbox-stx-exp
+python3 scripts/validate.py   # frontmatter, relative links, portability and companion packaging
+scripts/sync.sh              # compatibility alias for validation; no copying or deletion
 ```
 
-`sync.sh` also strips lines that only apply inside the sandbox repo (gate rules, `AppShell`, `dashboard/…` paths, stale "Differs from 0.2.2" notes) and fails if any remain. Add new patterns in the filter block of the script.
+After changing a skill, rerun the maintainer prompts in [tests/scenarios.md](tests/scenarios.md) and compare against the stated expectations; they are not shipped to agents.
 
-Commit the result. The sync prints the source commit; put it in your commit message. `SKILL.md` files are hand-written; update the
-core rules there only when `agent-rules/core.md` in the source repo changes.
+The former sync import is retired: `sync.sh` rejects source arguments so it cannot overwrite repository-owned guidance. Review API-specific changes against the installed consumer version and record that version when verifying an application.
 
-## Stress-test a screen
+The installer discovers every sibling skill and symlinks complete directories. Keep the build and verification skills together. For manual or archive distribution, ship the complete `skills/` tree (including references, attribution and licences) and preserve sibling names. Copying only an entrypoint loses required references and is unsupported. The validator checks cross-skill links; run it after editing skills. Installation does not need Python.
 
-After building a screen, ask the agent to use `break-ui` on that screen. It creates realistic edge-case fixtures, checks the rendered result where tools are available, and reports issues and proposed fixes. It applies fixes when requested. The installer above discovers all skill folders automatically.
+## Stress-test and mobile checks
 
-`break-ui` was originally created by [Emil Kowalski](https://github.com/emilkowalski/skills/tree/main/skills/break-ui). This repository maintains a StraitsX adaptation; see its [attribution](skills/break-ui/ATTRIBUTION.md) and preserved [MIT licence](skills/break-ui/LICENSE). It is maintained separately from the generated StraitsX references.
+`stx-design-verify` includes two adapted modules. Ask it to stress-test a screen to run [data robustness](skills/stx-design-verify/references/stress-test.md) with realistic difficult fixtures, or to check a mobile screen to run [mobile web](skills/stx-design-verify/references/mobile.md) for viewport, touch, keyboard and scroll behaviour. Both report first and fix only when authorised. Checks that need a real phone stay unverified until tested on one.
 
-## Check mobile web behaviour
-
-Ask the agent to use `mobile-native` on a mobile screen or interaction. It checks viewport sizing, touch feedback, keyboards, safe areas and scrolling, using the project’s build/preview workflow. Global shell or shared-package changes outside the workspace are reported separately, and checks requiring a real phone remain explicitly pending until tested.
-
-`mobile-native` was originally created by [Emil Kowalski](https://github.com/emilkowalski/skills/tree/main/skills/mobile-native). See the adaptation’s [attribution](skills/mobile-native/ATTRIBUTION.md) and preserved [MIT licence](skills/mobile-native/LICENSE).
+These modules were originally `break-ui` and `mobile-native` by [Emil Kowalski](https://github.com/emilkowalski/skills), adapted for StraitsX. See the [attribution](skills/stx-design-verify/ATTRIBUTION.md) and preserved [MIT licence](skills/stx-design-verify/LICENSE). Installs made before this merge may have leftover `break-ui` and `mobile-native` links; `scripts/install.sh` removes dangling ones.

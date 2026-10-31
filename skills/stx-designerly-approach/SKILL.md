@@ -1,6 +1,6 @@
 ---
 name: stx-designerly-approach
-description: Build and review StraitsX product UI (Personal, Business, Developer dashboards; transfer, swap, mint, redeem, payout, OTC, settlement flows) with the stxdesign-sandbox React design system. Use when designing, coding, writing copy for, formatting amounts in, laying out, or reviewing any StraitsX screen, flow, form or component.
+description: Build StraitsX product UI with the stxdesign-sandbox React design system. Use for screen and flow implementation, modals, alerts, transaction history, balance cards, funding flows, copy, financial formatting and design guidance. For post-build verification or an explicit audit, use the companion stx-design-verify skill.
 ---
 
 # StraitsX design
@@ -9,17 +9,17 @@ Build UI from the `stxdesign-sandbox` design system and the StraitsX rules below
 
 ## Choose the workspace
 
-- For prototypes and existing React products, use the project's installed `stxdesign-sandbox` package and project conventions. The package supplies React components and tokens; it is not bundled with this skill.
-- For critique, copy or flow guidance, use this skill's references without requiring the package. State when component availability cannot be verified.
+Ask which process applies if the request does not say.
 
-When implementing UI, check that the package is available in the project. If it is missing, explain the dependency needed and follow the user's instructions for installing it. Import `stxdesign-sandbox/global.css` once at the app entry and import components by name. Use the project's existing build and preview workflow.
+- **React project** (for example a Vite prototype): use the project's installed `stxdesign-sandbox` package and project conventions. The package supplies React components and tokens; it is not bundled with this skill.
+- **Paper file**: design in the file the user has selected in Paper or linked. Confirm the target file and page from the file you are connected to before editing, change only that file, and follow Paper's own tool instructions. Draw only components in the design system, as their [component guides](references/components/README.md) and the official Storybook show them, with the same tokens, spacing steps, copy and number rules. Do not invent controls or restyle existing ones. Skip Paper's own design brief with a mood and palette: colours, type and surfaces come from StraitsX tokens and component styling. Package availability stays unverified, since no React package is involved.
+- **Critique, copy or flow guidance**: use this skill's references without requiring either. State when component availability cannot be verified.
+
+In a React project, check that the package is available in the project. If it is missing, explain the dependency needed and follow the user's instructions for installing it. Follow the installed package setup: import `stxdesign-sandbox/global.css` once at the app entry if that path is exported, and use its supported named imports. Use the project's existing build and preview workflow.
 
 ## Finding components and props
 
-- Use the official Storybook at https://stxdesign-sandbox.vercel.app for component examples and guidance.
-- Verify available exports and exact props against the installed package's `dist/index.d.ts`, component declarations and README. Some controls are compound; do not guess their API. Storybook may describe a different version.
-- For design intent, read `references/components/<name>.md`. The guides describe intent; the installed package determines what can actually be used. Explain unavailable capabilities rather than inventing props.
-- Do not recreate design-system controls from tokens, CSS or screenshots as a fallback for missing components or tooling. Report the limitation. If the user requests a visual mockup in a design tool, clearly distinguish its visual representations from working package components.
+Read [Package authority](references/package-api.md) before implementation. The consumer project's installed package declarations, README and version-matched supported examples determine actual exports, props and composition. These bundled guides describe design intent, not a version-independent API contract. Report unsupported capabilities; do not recreate package controls or hide mismatches with casts or suppressions.
 
 ## Before designing
 
@@ -27,6 +27,8 @@ When implementing UI, check that the package is available in the project. If it 
 2. Identify the money movement where relevant, or note that none applies.
 
 ## Always-on rules
+
+These are hard rules. Everything in the references (patterns, component guides, sizing and layout advice) is a default: depart from it when the task needs to, say why, and stay inside these rules.
 
 **Flow**
 - One primary action per decision area. Put it first, before the background.
@@ -54,8 +56,10 @@ When implementing UI, check that the package is available in the project. If it 
 |---|---|
 | Designing or reviewing a flow, states, risk, compliance, rails | `references/principles.md` |
 | Labels, buttons, helper text, errors, terminology | `references/copy.md` |
+| Writing copy as a deliverable (email, social, blog) | [Copywriting mode](references/copywriting.md) |
 | Any amount, balance, fee, rate or sample data | `references/numbers.md` |
 | Gap, padding, columns, radius, responsive | `references/layout.md` |
+| Transaction history, balance cards or funding flows | [Composition patterns](references/patterns.md) |
 | Using a specific component | `references/components/<name>.md` (index: `references/components/README.md`) |
 
 ## Building a screen
@@ -64,9 +68,8 @@ When implementing UI, check that the package is available in the project. If it 
 2. Read the topics above that apply and the guide for each component you plan to use.
 3. Verify component availability and props against the installed package, then build the screen using the workspace conventions and realistic sample data.
 4. Build the non-default states (empty, loading, error, success) and the review/receipt step for risky actions.
-5. Typecheck and run the project's own checks. Look at the result in the browser if you can.
+5. Run the companion [stx-design-verify](../stx-design-verify/SKILL.md) workflow: check the package contract and project checks, then inspect rendered states and interactions. Fix issues within the authorised scope and recheck affected areas before claiming completion. Record unavailable checks as unverified.
 
 ## Reviewing a design
 
-Check against: the two "before designing" answers, the flow rules, the `principles.md` review checklist, then copy, numbers and
-layout. Report each violation with the rule it breaks and a concrete fix.
+Use the shared references for design advice. For a post-build check or explicit read-only audit, follow [stx-design-verify](../stx-design-verify/SKILL.md); it owns the verification procedure and evidence report.

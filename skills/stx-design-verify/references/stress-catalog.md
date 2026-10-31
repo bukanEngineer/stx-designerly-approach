@@ -1,6 +1,6 @@
-# Worst-Case Catalog
+# Worst-case catalog
 
-Realistic values that break UI, grouped by what kind of value the component renders. Use the rows that apply to the fields in your Phase 1 table. Each value is something a real user could produce; the note says what it tends to break.
+Adapted from Emil Kowalski's `break-ui`; see [attribution](../ATTRIBUTION.md). Realistic values that break UI, grouped by what kind of value the component renders. Use the rows that apply to the fields mapped in [the stress-test procedure](stress-test.md#procedure). Each value is something a real user could produce; the note says what it tends to break.
 
 Use `example.com`, `example.org`, or `.test` domains for emails and URLs, so the fixture never points at a real inbox or site.
 
@@ -12,18 +12,14 @@ Use `example.com`, `example.org`, or `.test` domains for emails and URLs, so the
 | --- | --- |
 | `Aleksandra Wiśniewska-Kowalczyk` | Long, hyphenated, diacritics; wraps to two lines, and the hyphen is a line-break point |
 | `Christopher Alexander Montgomery III` | Long with a suffix; naive first + last initials give `CI` |
-| `Konstantin Oberhauser-Wettstein` | Long and compound; overflows single-line rows |
 | `Jo` | Two letters; leaves the name column mostly empty, and naive initials give `J` |
 | `J` | One letter; single-character initials, very short click target if the name is the link |
-| `Ólafur Darri Ólafsson` | Leading accented capital; uppercase/sort logic, initials `ÓÓ` |
 | `Đặng Thị Ngọc Hân` | Stacked Vietnamese diacritics; clipped by tight `line-height` + `overflow: hidden` |
 | `王秀英` | CJK, no spaces; "first + last word" initials logic finds one word, and CJK breaks anywhere |
 | `نور الهدى عبد الرحمن` | RTL; punctuation and icons land on the wrong side without `dir="auto"` |
 | `Seán O'Brien-Ó Súilleabháin` | Apostrophe and accents; escaping, initials, search |
 | `María José de la Cruz y Fernández` | Lowercase particles; initials `Md` or `MF`, sorting by "last name" |
-| `dana` | All lowercase; initials should still be uppercase |
-| `🦊 Fox` | Emoji first; `.charAt(0)` returns half a surrogate pair (`�`) |
-| `👩🏽‍💻 Priya` | ZWJ emoji sequence; `.length` is 7+, slicing breaks it into pieces |
+| `🦊 Fox`, `👩🏽‍💻 Priya` | Emoji first or a ZWJ sequence; `.charAt(0)` returns half a surrogate pair (`�`) and slicing splits the sequence |
 | `  Sam   Lee ` | Leading, trailing, and repeated spaces; initials from empty words, odd gaps |
 | *(missing)* | No name at all, only an email; the UI must fall back to something |
 
@@ -36,12 +32,9 @@ Unbreakable strings: they have no spaces, so the browser has nowhere to wrap the
 | `bartholomew.fitzgerald@northwind-industries-holdings.example.com` | The classic. Pushes every sibling off the row without `overflow-wrap: anywhere` |
 | `a@b.co` | Shortest realistic; layout that assumed a long email looks empty |
 | `first.last+billing-notifications@example.com` | Plus-addressing; validation that rejects `+`, display that truncates the meaningful part |
-| `ops@sub.department.region.example.co.uk` | Many subdomains, two-part TLD; "domain" extraction logic |
 | `https://example.com/workspaces/acme/projects/q3-launch/docs/9f8e7d6c5b4a?tab=comments&filter=unresolved` | Long URL; overflow, and end-truncation hides the part that differs |
 | `9f8e7d6c-5b4a-4c3d-8e2f-1a0b9c8d7e6f` | UUID; monospace width, middle-truncation candidate |
-| `Q3 Board Deck — FINAL (revised) v12 [approved by legal].pdf` | File name; end-truncation hides the version and extension, brackets and dashes in paths |
-| `IMG_20250914_183022_HDR_portrait_edited_edited.HEIC` | Camera file name; unbreakable, uppercase extension |
-| `@a` / `@thisisaverylongusernamethatisallowed` | Handle extremes |
+| `Q3 Board Deck - FINAL (revised) v12 [approved by legal].pdf` | File name; end-truncation hides the version and extension, brackets and dashes in paths |
 
 ## Labels, titles, and copy from data
 
@@ -52,10 +45,8 @@ Unbreakable strings: they have no spaces, so the browser has nowhere to wrap the
 | `Benachrichtigungseinstellungen` | German compound (30 chars, no spaces); label overflow, unbreakable |
 | `Paramètres de confidentialité et de sécurité` | French expansion of "Privacy & security"; UI copy runs ~30% longer in translation |
 | Twelve tags on one item: `design`, `frontend`, `q3`, `urgent`, `needs-review`, … | Tag rows that wrap into a wall; needs a `+8` overflow |
-| A tag named `customer-feedback-from-enterprise-onboarding` | One tag wider than its container |
 | `Untitled` / empty string / `   ` | Title missing; collapsed heading, zero-height row |
 | `<script>alert(1)</script>` / `&amp;` / `**bold**` | Escaping; must render as literal text |
-| `Line one` + newline + `Line two` | Newline in a single-line field; doubles row height or is silently dropped |
 | A 2,000-character pasted description | Clamps, "show more", and textarea growth |
 
 ## Numbers and money
@@ -65,11 +56,9 @@ Unbreakable strings: they have no spaces, so the browser has nowhere to wrap the
 | `0` | Zero states: "0 members", empty progress bar, division by zero in percentages |
 | `1` | Plurals: "1 members", "1 days ago" |
 | `1284` | Needs a thousands separator: `1,284` |
-| `1000000` | Width of the count badge; consider compact form `1M` where precision doesn't matter |
 | `12345678.9` as currency | `12,345,678.90 USD` under StraitsX rules; overflows totals columns |
 | `-42.5` | Negative sign, red color logic, parentheses in accounting formats |
 | `0.1 + 0.2` | `0.30000000000000004` rendered raw |
-| `142%` / `-3%` | Progress bars and meters past their bounds |
 | `null` / `undefined` / `NaN` | Rendered literally |
 | `1.284` in `de-DE` vs `1,284` in `en-US` | Locale formatting; hardcoded separators are wrong for half the world |
 | A value that changes live (`99` → `100`) | Width jump and jitter without `tabular-nums` |
@@ -94,7 +83,6 @@ Unbreakable strings: they have no spaces, so the browser has nowhere to wrap the
 | A future date | "in 3 days" vs "-3 days ago" |
 | `1970-01-01` | A zero timestamp shown as a real date |
 | `2025-12-31T23:30:00-08:00` | Shows as a different day in UTC and the user's timezone |
-| Very long duration (`1,284 hours`) | Duration formatting that never rolls up to days |
 
 Use `Intl.RelativeTimeFormat` and `Intl.DateTimeFormat`, not hand-built strings.
 
@@ -105,9 +93,7 @@ Use `Intl.RelativeTimeFormat` and `Intl.DateTimeFormat`, not hand-built strings.
 | Avatar URL that 404s | Broken-image icon instead of the initials fallback |
 | No avatar at all | The fallback itself: initials, color, size parity with real avatars |
 | 4000×200 panorama as avatar or cover | Distortion without `object-fit: cover` |
-| 200×4000 tall image | Same, other axis; can also blow out a card's height |
 | Transparent PNG logo, dark logo on dark mode | Invisible on the background |
-| Slow-loading image | Layout shift without fixed dimensions or `aspect-ratio` |
 
 ## States
 
@@ -118,7 +104,6 @@ Use `Intl.RelativeTimeFormat` and `Intl.DateTimeFormat`, not hand-built strings.
 | Partial data | Some optional fields filled, others not, in the same list; misaligned rows |
 | Every status at once | All enum values in one list (`active`, `invited`, `expired`, `suspended`); badge widths vary |
 | No permission | Disabled actions; does the row still lay out the same? |
-| The current user in the list | "You" labels, actions that shouldn't apply to yourself |
 
 ## Environment
 
@@ -136,7 +121,7 @@ Not data, but checked the same way: flip to the worst case, then change these.
 
 ## StraitsX financial cases
 
-Use synthetic values consistent with the supported asset, rail and schema. Follow project amount-formatting rules; retain raw precision in fixture data.
+Use synthetic values consistent with the supported asset, rail and schema. Follow the [numbers](../../stx-designerly-approach/references/numbers.md) rules; retain raw precision in fixture data.
 
 | Case | What to check |
 | --- | --- |

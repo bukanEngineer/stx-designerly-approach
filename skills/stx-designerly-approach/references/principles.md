@@ -4,6 +4,24 @@ Use these principles when designing StraitsX product experiences across Personal
 
 StraitsX operates at the bridge between fiat, stablecoins, blockchain networks, payment rails, cards, QR acceptance, and institutional settlement. The design system must make that bridge feel reliable, understandable, and consistent without hiding the details that matter.
 
+## Where to look
+
+| Question | Section |
+|---|---|
+| Does the screen show state, change and reason? | 1 |
+| What is the primary action and what follows it? | 2 |
+| Fiat, stablecoin, card or network rails | 3, 4 |
+| Review, confirmation, irreversible actions | 5 |
+| Trust, fees, limits, risk placement | 6 |
+| First-time versus expert use | 7 |
+| Personal, Business, Platform consistency | 8 |
+| Compliance and verification messaging | 9 |
+| Consistency across components | 10 |
+| Product-specific guidance (Dashboard, OTC, API, Payment Network, Card Issuance) | Product-specific guidance |
+| Transfer, verification, balance or sandbox flows | Flow patterns |
+| Pre-release checks | Design review checklist |
+
+
 ## Source of truth
 
 These principles are grounded in three inputs:
@@ -35,7 +53,7 @@ StraitsX design documentation follows a layered source-of-truth model. This is t
 | Product and UX principles | `principles.md` (this file) | What the experience should optimise for: state, trust, risk, compliance, rails, next action |
 | Layout | `layout.md` | Spacing, radius, layout and responsive rules |
 | Design tokens and component implementation | The `stxdesign-sandbox` design system (`tokens.css`) | Token values: colour, type, spacing, radius, elevation. When a document and stxdesign-sandbox disagree, stxdesign-sandbox wins |
-| Components | `component-guideline/*.md` | When to use, behaviour, and placement of one component |
+| Components | `components/<name>.md` | When to use, behaviour, and placement of one component |
 | Numbers | `numbers.md` | How money, balances, and token amounts are formatted |
 | Copy | `copy.md` | Voice, terminology, CTA and label rules |
 
@@ -462,21 +480,7 @@ Verification flows should feel procedural and reassuring.
 
 ## Balance / Asset Summary
 
-Balance cards should prioritize scanability.
-
-**Recommended hierarchy**
-
-- Asset code or account name
-- Available balance
-- Secondary metadata: pending, reserved, limits, last updated
-- Primary action only if the card is the main context
-
-**Amount formatting**
-
-- Format every amount per [`numbers.md`](./numbers.md): code after the number, no currency symbol.
-- Right-align tabular amounts in tables.
-- Use clear asset codes.
-- Avoid decorative coloring of balances unless communicating status.
+Balance cards put identity, label and the formatted balance first, with any action subordinate to them. The hierarchy, states and responsive rules are owned by [balance cards](./patterns.md#balance-cards); amount formatting by [`numbers.md`](./numbers.md).
 
 ## Sandbox / Developer Environment
 

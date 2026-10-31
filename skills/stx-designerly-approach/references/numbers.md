@@ -2,6 +2,19 @@
 
 Simple formatting rules for showing fiat, stablecoin, and token balances across StraitsX product surfaces.
 
+## Where to look
+
+| Question | Section |
+|---|---|
+| Overview, exact or full precision | 1, 3, 5, 6 |
+| Currency code and symbol placement | 2 |
+| Avoiding overstated balances, sub-cent values, rounding | 4, 7, 8 |
+| Tokens and stablecoins | 9, 15 |
+| Where each format applies, revealing exact values, copying | 10, 11, 12 |
+| Edge cases and negative values | 13, 14 |
+| Formatting hygiene, shared formatter helper and tests | 16, 17 |
+
+
 ## 1. Main principle
 
 Use three display types:
