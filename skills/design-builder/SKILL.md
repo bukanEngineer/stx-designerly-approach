@@ -1,6 +1,6 @@
 ---
-name: stx-designerly-approach
-description: Build StraitsX product UI with the stxdesign-sandbox React design system. Use for screen and flow implementation, modals, alerts, transaction history, balance cards, funding flows, copy, financial formatting and design guidance. For post-build verification or an explicit audit, use the companion stx-design-verify skill.
+name: design-builder
+description: Build StraitsX product UI with the stxdesign-sandbox React design system. Use for screen and flow implementation, modals, alerts, transaction history, balance cards, funding flows, copy, financial formatting and design guidance. For post-build verification or an explicit audit, use the companion design-verify skill.
 ---
 
 # StraitsX design
@@ -68,8 +68,8 @@ These are hard rules. Everything in the references (patterns, component guides, 
 2. Read the topics above that apply and the guide for each component you plan to use.
 3. Verify component availability and props against the installed package, then build the screen using the workspace conventions and realistic sample data.
 4. Build the non-default states (empty, loading, error, success) and the review/receipt step for risky actions.
-5. Run the companion [stx-design-verify](../stx-design-verify/SKILL.md) workflow: check the package contract and project checks, then inspect rendered states and interactions. Fix issues within the authorised scope and recheck affected areas before claiming completion. Record unavailable checks as unverified.
+5. Run the companion [design-verify](../design-verify/SKILL.md) workflow: check the package contract and project checks, then inspect rendered states and interactions. Fix issues within the authorised scope and recheck affected areas before claiming completion. Record unavailable checks as unverified.
 
 ## Reviewing a design
 
-Use the shared references for design advice. For a post-build check or explicit read-only audit, follow [stx-design-verify](../stx-design-verify/SKILL.md); it owns the verification procedure and evidence report.
+Use the shared references for design advice. For a post-build check or explicit read-only audit, follow [design-verify](../design-verify/SKILL.md); it owns the verification procedure and evidence report.

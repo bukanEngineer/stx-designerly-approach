@@ -6,7 +6,7 @@ Use source inspection to find candidate failures and rendered or computed eviden
 
 ## 1. Installed API and executable checks
 
-Rule: [Package authority](../../stx-designerly-approach/references/package-api.md).
+Rule: [Package authority](../../design-builder/references/package-api.md).
 
 - **A1** Record the consumer package version and run the project's typecheck and relevant build, lint and tests. Record command, exit status and scope. If the build omits typechecking, run it separately; if none exists, report the gap. A pass establishes only the checked source and build properties.
 - **A2** Where typecheck cannot confirm DS usage (untyped files, loosely typed wrappers, children or slot shapes), compare imports, props and composition with the installed declarations and supported examples.
@@ -18,19 +18,19 @@ Rule: [Package authority](../../stx-designerly-approach/references/package-api.m
 
 Load only the references the screen needs.
 
-- **D1** Every control traces to a DS export. No recreated button, input, select, textarea or table. Rule: [build rules](../../stx-designerly-approach/SKILL.md).
+- **D1** Every control traces to a DS export. No recreated button, input, select, textarea or table. Rule: [build rules](../../design-builder/SKILL.md).
 - **D2** No CSS, utility or inline overrides of component internals. Compare selected tokens with the installed styles; inspect computed styles where needed.
-- **D3** Spacing, colour and typography come from tokens and DS components. Rule: [Layout](../../stx-designerly-approach/references/layout.md).
+- **D3** Spacing, colour and typography come from tokens and DS components. Rule: [Layout](../../design-builder/references/layout.md).
 - **D4** Dashboard surfaces are flat and bordered. Shadows appear only on floating layers (modals, menus, popovers).
 - **D5** Every inset has one owner. Check the computed padding of a card and its content part for doubled spacing.
 - **D6** No nested summary card around details that already share a surface.
-- **D7** Labels, help text, errors and state names, including disabled and pending messages, follow [Copy](../../stx-designerly-approach/references/copy.md).
-- **D8** Amounts follow [Numbers](../../stx-designerly-approach/references/numbers.md): raw values in data, one shared formatter, code after the number, `—` for missing, loading and error, never `0.00`. Check precision in overview, entry, review and receipt contexts using realistic balances, amounts, fees and rates.
-- **D9** History and balances follow [Patterns](../../stx-designerly-approach/references/patterns.md): toolbar scope and actions, copyable references, one status placement, the navigation choice, recovery states, balance hierarchy and responsive behaviour.
-- **D10** Modals follow [Modal](../../stx-designerly-approach/references/components/modal.md): content-based width and height, helper below the amount input, aligned label/value rows, one shared surface, supported footer.
-- **D11** Alerts follow [Alert](../../stx-designerly-approach/references/components/alert.md): suitable severity, no colour-only meaning, compact and long wrapping.
-- **D12** Flow follows [Principles](../../stx-designerly-approach/references/principles.md): decision context shown, review and receipt agree, pending, success and error outcomes are truthful.
-- **D13** Paper file: every component matches its [component guide](../../stx-designerly-approach/references/components/README.md) and the official Storybook, and nothing is drawn that the design system does not have. A1–A5 do not apply; record package availability as Unverified. Evidence comes from the canvas tool's screenshots and computed styles.
+- **D7** Labels, help text, errors and state names, including disabled and pending messages, follow [Copy](../../design-builder/references/copy.md).
+- **D8** Amounts follow [Numbers](../../design-builder/references/numbers.md): raw values in data, one shared formatter, code after the number, `—` for missing, loading and error, never `0.00`. Check precision in overview, entry, review and receipt contexts using realistic balances, amounts, fees and rates.
+- **D9** History and balances follow [Patterns](../../design-builder/references/patterns.md): toolbar scope and actions, copyable references, one status placement, the navigation choice, recovery states, balance hierarchy and responsive behaviour.
+- **D10** Modals follow [Modal](../../design-builder/references/components/modal.md): content-based width and height, helper below the amount input, aligned label/value rows, one shared surface, supported footer.
+- **D11** Alerts follow [Alert](../../design-builder/references/components/alert.md): suitable severity, no colour-only meaning, compact and long wrapping.
+- **D12** Flow follows [Principles](../../design-builder/references/principles.md): decision context shown, review and receipt agree, pending, success and error outcomes are truthful.
+- **D13** Paper file: every component matches its [component guide](../../design-builder/references/components/README.md) and the official Storybook, and nothing is drawn that the design system does not have. A1–A5 do not apply; record package availability as Unverified. Evidence comes from the canvas tool's screenshots and computed styles.
 
 ## 3. Rendered states and interactions
 
@@ -59,7 +59,7 @@ Applies when the screen renders dynamic names, identifiers, amounts or lists. Dr
 
 Applies when the screen targets phones or touch.
 
-- **M1** At phone width, forms are one column, the primary action stays reachable at every step, there is no horizontal page overflow, and modals and sheets scroll with their actions reachable. Rule: [Layout](../../stx-designerly-approach/references/layout.md).
+- **M1** At phone width, forms are one column, the primary action stays reachable at every step, there is no horizontal page overflow, and modals and sheets scroll with their actions reachable. Rule: [Layout](../../design-builder/references/layout.md).
 - **M2** Financial actions use standard activation (click or form submit) with keyboard support, never pointer-down. Amounts, addresses and references stay selectable.
 - **M3** Amount and code fields use the keyboard hints the installed input supports, and focusing an input does not make the page zoom or shift.
 - **M4** Touch feel, the software keyboard and browser-bar behaviour stay Unverified until tested on a device. Emulation verifies layout only.
