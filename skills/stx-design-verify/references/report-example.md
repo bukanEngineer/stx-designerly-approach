@@ -17,12 +17,12 @@ A format sample only. Every file, version, command and observation below is a pl
 ## Fail
 
 **1. A3, D10: footer recreated inside the modal body** (`src/funding/FundingModal.tsx:88`)
-Rule: [Modal footer composition](../../design-builder/references/components/modal.md#footer-composition).
+Rule: [Modal footer composition](../../stx-design-builder/references/components/modal.md#footer-composition).
 Evidence: the actions are a `div` of two Buttons rendered as body children. The installed Modal declaration exposes a footer mechanism (`dist/index.d.ts`, Modal props), and the example in the package README uses it. Rendered: the actions scroll away with the content at a 600px-high viewport.
 Fix: move the actions to the supported footer mechanism with one primary "Continue" action; remove the custom row.
 
 **2. D6, D10: nested summary card and stacked details** (`src/funding/Review.tsx:41`)
-Rule: [Detail and review rows](../../design-builder/references/components/modal.md#detail-and-review-rows), [surface hierarchy](../../design-builder/references/layout.md#surface-hierarchy-and-padding-ownership).
+Rule: [Detail and review rows](../../stx-design-builder/references/components/modal.md#detail-and-review-rows), [surface hierarchy](../../stx-design-builder/references/layout.md#surface-hierarchy-and-padding-ownership).
 Evidence: a bordered Card wraps the review rows inside the modal, and each row stacks label above value. *(rendered, 1440px)*
 Fix: render the rows as a two-column label/value grid on the modal's own surface and drop the inner Card.
 

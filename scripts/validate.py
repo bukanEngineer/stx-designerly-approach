@@ -78,7 +78,7 @@ for path in files:
         links += 1
 
 # These references must ship together, regardless of install destination.
-for name in ("design-builder", "design-verify"):
+for name in ("stx-design-builder", "stx-design-verify"):
     if not (SKILLS / name / "SKILL.md").is_file():
         errors.append(f"skills/{name}/SKILL.md: missing distribution entry")
 

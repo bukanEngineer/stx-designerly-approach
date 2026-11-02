@@ -4,8 +4,8 @@ Portable agent skills for creating and reviewing StraitsX UI using the `stxdesig
 
 | Skill | Purpose |
 |---|---|
-| `design-builder` | Build StraitsX UI: package authority, shared rules, transaction history, balance cards and funding/modal composition |
-| `design-verify` | Post-build API, design-rule, rendered UI, edge-case data and narrow-screen verification; explicit read-only audits |
+| `stx-design-builder` | Build StraitsX UI: package authority, shared rules, transaction history, balance cards and funding/modal composition |
+| `stx-design-verify` | Post-build API, design-rule, rendered UI, edge-case data and narrow-screen verification; explicit read-only audits |
 
 ## Install (team)
 
@@ -25,7 +25,7 @@ scripts/install.sh claude     # or pick one
 
 1. Choose the process. For a React project (for example Vite), open one with `stxdesign-sandbox` installed, or set up a prototype project and install the package there (follow the package README). For a Paper file, point the agent at the file you are working on; it draws only the design system's components.
 2. Install these skills for your agent using the commands above.
-3. Ask the agent to use `design-builder` for your task, then `design-verify`. The loop is build → verify → fix authorised issues → recheck affected areas. For a report without edits, explicitly request a read-only audit. Source/build checks and rendered checks are reported separately; unavailable checks stay unverified.
+3. Ask the agent to use `stx-design-builder` for your task, then `stx-design-verify`. The loop is build → verify → fix authorised issues → recheck affected areas. For a report without edits, explicitly request a read-only audit. Source/build checks and rendered checks are reported separately; unavailable checks stay unverified.
 
 The [official Storybook](https://stxdesign-sandbox.vercel.app) provides component examples and guidance. Verify available components and props against the installed package, since Storybook may describe a different version.
 
@@ -33,7 +33,7 @@ The component package is not bundled with these skills. Design reviews, copy and
 
 ## Maintain
 
-The bundled references are maintained in this repository. Edit shared design rules under `skills/design-builder/references/`; the verification skill links to them rather than duplicating them. No external checkout is needed. Consumer package declarations and supported examples remain authoritative for actual API support.
+The bundled references are maintained in this repository. Edit shared design rules under `skills/stx-design-builder/references/`; the verification skill links to them rather than duplicating them. No external checkout is needed. Consumer package declarations and supported examples remain authoritative for actual API support.
 
 ```bash
 python3 scripts/validate.py   # frontmatter, relative links, portability and companion packaging

@@ -1,11 +1,11 @@
 ---
-name: design-verify
+name: stx-design-verify
 description: Verify a built StraitsX UI against the installed stxdesign-sandbox API, shared design rules, rendered behaviour, edge-case data and narrow-screen behaviour. Use after implementation, for a design-system compliance check, to test a screen with edge-case data, or for an explicit read-only UI audit.
 ---
 
 # Verify StraitsX UI
 
-Companion to [design-builder](../design-builder/SKILL.md). That skill owns the design rules; this skill owns the checks and evidence. Both sibling directories must be installed together using the repository installer or copied with their full references and relative layout intact.
+Companion to [stx-design-builder](../stx-design-builder/SKILL.md). That skill owns the design rules; this skill owns the checks and evidence. Both sibling directories must be installed together using the repository installer or copied with their full references and relative layout intact.
 
 ## Workflow
 
