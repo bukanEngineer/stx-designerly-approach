@@ -81,9 +81,6 @@ for path in files:
 for name in ("stx-designerly-approach", "stx-design-verify"):
     if not (SKILLS / name / "SKILL.md").is_file():
         errors.append(f"skills/{name}/SKILL.md: missing distribution entry")
-for required in ("LICENSE", "ATTRIBUTION.md"):
-    if not (SKILLS / "stx-design-verify" / required).is_file():
-        errors.append(f"skills/stx-design-verify/{required}: required for adapted third-party content")
 
 # Scan shipped text for workstation paths.
 local_path = re.compile(r"/(?:Users|home)/[^\s/]+|[A-Za-z]:\\")

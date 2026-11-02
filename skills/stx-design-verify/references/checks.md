@@ -45,23 +45,24 @@ Use the host's browser tools and the project's preview instructions. Record rout
 - **R7** Search, filters, reset, export scope, progress and failure, full-reference clipboard content, and row and detail actions, tested independently. Success feedback requires observed success; a click handler is only source evidence.
 - **R8** Use project-supported fixtures, routes or controlled data. Do not perform real financial or external actions to verify UI. Report inaccessible outcomes as Unverified.
 
-## 4. Data robustness
+## 4. Edge-case data
 
-Applies when the screen renders dynamic names, identifiers, amounts or lists, or when asked to stress-test. Procedure and signatures: [stress test](stress-test.md); values: [catalog](stress-catalog.md).
+Applies when the screen renders dynamic names, identifiers, amounts or lists. Drive values through the existing fixture, mock or props boundary, never by editing markup or CSS to force a break. Use realistic values or the schema's actual limits.
 
-- **S1** Every rendered value is mapped to its source and limit.
-- **S2** Worst-case, empty, one-item and huge fixtures are driven through the existing data boundary, never by editing markup or CSS.
-- **S3** Each fixture is checked at the real container width, 320px and the widest layout.
-- **S4** The StraitsX financial cases pass: tiny non-zero balance, failed request versus real zero, fee above balance, long addresses and references. Fixtures only.
-- **S5** Each case is recorded as visually verified, inferred from code or not tested.
+- **S1** Text: the longest name, reference and label the data allows, a one-character name, a missing optional field, and text with accents or non-Latin characters. Nothing overflows, overlaps, clips or leaves an orphaned placeholder.
+- **S2** Collections: empty, exactly one item (check plurals and counts), and a very large list. Each has a sensible state and acceptable performance.
+- **S3** Amounts, per D8: a tiny non-zero balance is not shown as zero, a failed or missing balance differs from a real zero, a fee above the balance gives a clear message, an amount at a limit and one step above it validates correctly, and a large balance, fee and total fit together.
+- **S4** Identifiers: a long wallet address, hash, reference or beneficiary name stays distinguishable. If truncated, truncate in the middle and keep the full raw value copyable. Never truncate amounts or dates.
+- **S5** Check each case at the real container width, 320px and the widest layout. Record it as rendered, inferred from code or not tested. Use fixtures only; never start a real transaction.
 
-## 5. Mobile web behaviour
+## 5. Narrow and touch screens
 
-Applies when the screen targets phones or touch. Symptoms and fixes: [mobile web](mobile.md).
+Applies when the screen targets phones or touch.
 
-- **M1** Viewport sizing, hover gating, input zoom and keyboard hints, safe areas, overscroll and gesture axes are checked against the symptom table. A fix addresses an observed problem and names its owner (screen, shell or package).
-- **M2** Financial actions use standard accessible activation. Amounts, addresses and references stay selectable.
-- **M3** Touch feel, URL-bar and keyboard viewport behaviour, and installed-PWA behaviour stay Unverified until tested on a device. Emulation verifies layout only.
+- **M1** At phone width, forms are one column, the primary action stays reachable at every step, there is no horizontal page overflow, and modals and sheets scroll with their actions reachable. Rule: [Layout](../../stx-designerly-approach/references/layout.md).
+- **M2** Financial actions use standard activation (click or form submit) with keyboard support, never pointer-down. Amounts, addresses and references stay selectable.
+- **M3** Amount and code fields use the keyboard hints the installed input supports, and focusing an input does not make the page zoom or shift.
+- **M4** Touch feel, the software keyboard and browser-bar behaviour stay Unverified until tested on a device. Emulation verifies layout only.
 
 ## After fixes
 

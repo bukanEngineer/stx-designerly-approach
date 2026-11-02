@@ -5,7 +5,7 @@ Portable agent skills for creating and reviewing StraitsX UI using the `stxdesig
 | Skill | Purpose |
 |---|---|
 | `stx-designerly-approach` | Build StraitsX UI: package authority, shared rules, transaction history, balance cards and funding/modal composition |
-| `stx-design-verify` | Post-build API, design-rule, rendered UI, worst-case data and mobile web verification; explicit read-only audits |
+| `stx-design-verify` | Post-build API, design-rule, rendered UI, edge-case data and narrow-screen verification; explicit read-only audits |
 
 ## Install (team)
 
@@ -44,10 +44,4 @@ After changing a skill, rerun the maintainer prompts in [tests/scenarios.md](tes
 
 The former sync import is retired: `sync.sh` rejects source arguments so it cannot overwrite repository-owned guidance. Review API-specific changes against the installed consumer version and record that version when verifying an application.
 
-The installer discovers every sibling skill and symlinks complete directories. Keep the build and verification skills together. For manual or archive distribution, ship the complete `skills/` tree (including references, attribution and licences) and preserve sibling names. Copying only an entrypoint loses required references and is unsupported. The validator checks cross-skill links; run it after editing skills. Installation does not need Python.
-
-## Stress-test and mobile checks
-
-`stx-design-verify` includes two adapted modules. Ask it to stress-test a screen to run [data robustness](skills/stx-design-verify/references/stress-test.md) with realistic difficult fixtures, or to check a mobile screen to run [mobile web](skills/stx-design-verify/references/mobile.md) for viewport, touch, keyboard and scroll behaviour. Both report first and fix only when authorised. Checks that need a real phone stay unverified until tested on one.
-
-These modules were originally `break-ui` and `mobile-native` by [Emil Kowalski](https://github.com/emilkowalski/skills), adapted for StraitsX. See the [attribution](skills/stx-design-verify/ATTRIBUTION.md) and preserved [MIT licence](skills/stx-design-verify/LICENSE). Installs made before this merge may have leftover `break-ui` and `mobile-native` links; `scripts/install.sh` removes dangling ones.
+The installer discovers every sibling skill and symlinks complete directories. Keep the build and verification skills together. For manual or archive distribution, ship the complete `skills/` tree (including references) and preserve sibling names. Copying only an entrypoint loses required references and is unsupported. The validator checks cross-skill links; run it after editing skills. Installation does not need Python.

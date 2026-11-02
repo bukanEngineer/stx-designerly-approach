@@ -1,11 +1,11 @@
 ---
 name: stx-design-verify
-description: Verify a built StraitsX UI against the installed stxdesign-sandbox API, shared design rules, rendered behaviour, worst-case data and mobile web behaviour. Use after implementation, to stress-test a screen with edge-case data, to check mobile viewport or touch behaviour, for a design-system compliance check, or for an explicit read-only UI audit.
+description: Verify a built StraitsX UI against the installed stxdesign-sandbox API, shared design rules, rendered behaviour, edge-case data and narrow-screen behaviour. Use after implementation, for a design-system compliance check, to test a screen with edge-case data, or for an explicit read-only UI audit.
 ---
 
 # Verify StraitsX UI
 
-Companion to [stx-designerly-approach](../stx-designerly-approach/SKILL.md). That skill owns the design rules; this skill owns the checks and evidence. Both sibling directories must be installed together using the repository installer or copied with their full references and relative layout intact. Data-robustness and mobile checks are adapted from Emil Kowalski's skills; see [attribution](ATTRIBUTION.md).
+Companion to [stx-designerly-approach](../stx-designerly-approach/SKILL.md). That skill owns the design rules; this skill owns the checks and evidence. Both sibling directories must be installed together using the repository installer or copied with their full references and relative layout intact.
 
 ## Workflow
 
@@ -13,11 +13,11 @@ Companion to [stx-designerly-approach](../stx-designerly-approach/SKILL.md). Tha
 2. Set the depth from the request and the size of the change, and state it in the report:
    - **Quick** (a small edit): A1 and A5, D1–D6 on the changed files, plus the A/D items for any modal or alert touched. Render only what changed, if tools are available.
    - **Standard** (a new screen or flow, or "check this"): sections 1–3 of the checks.
-   - **Full** (a full audit or pre-release): adds data robustness and mobile where they apply.
+   - **Full** (a full audit or pre-release): adds sections 4 and 5 where they apply.
 
    Items outside the chosen depth are **Not checked**, never Pass.
 3. Read [verification checks](references/checks.md) (numbered items to report against) and the shared references relevant to the target. Record the consumer package version, routes, states and available typecheck/render/browser tools. If a shared reference is missing, report the installation gap rather than substituting an external checkout.
-4. Identify the process. A **React project** gets the API, design-rule and rendered checks. A **Paper file** gets the design-rule checks plus [D13](references/checks.md), using the canvas tool's screenshots and computed styles; the API checks do not apply and interaction behaviour stays unverified. Run [data robustness](references/stress-test.md) and [mobile web](references/mobile.md) at Full depth where they apply (dynamic names, identifiers, amounts or lists; phone or touch targets), and at any depth when the user asks or reports a related symptom. Mark an area not applicable with the reason.
+4. Identify the process. A **React project** gets the API, design-rule and rendered checks. A **Paper file** gets the design-rule checks plus [D13](references/checks.md), using the canvas tool's screenshots and computed styles; the API checks do not apply and interaction behaviour stays unverified. Run the edge-case data and narrow-screen checks (sections 4 and 5) at Full depth where they apply (dynamic names, identifiers, amounts or lists; phone or touch targets), and at any depth when the user asks or reports a related symptom. Mark an area not applicable with the reason.
 5. Check the installed API contract and source composition, then run the project's relevant typecheck/build/check commands. Inspect the rendered UI and exercise interactions where tools permit. Source inspection and build success cannot establish a visual pass.
 6. Report issues, fix authorised ones, then rerun the checks and rendered paths affected by each fix, including adjacent states, fixtures or responsive layouts it could change. For read-only mode, stop at findings. If a required tool, state or device is unavailable, finish independent checks and leave that area unverified.
 

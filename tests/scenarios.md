@@ -23,7 +23,7 @@ Use a seeded project for each case: apply the "flaw" below, then ask for the ver
 | V3 | Summary Card nested in a modal; shadow on a dashboard card; doubled card padding. | Fail D4, D5, D6 with computed-style evidence. | |
 | V4 | Same project, but no browser tool available. | Source findings reported; all R items Unverified. | No claim of a visual pass. |
 | V5 | Read-only audit request on a project with an obvious violation. | Findings and fixes proposed only; no files edited. | `git status` unchanged. |
-| V6 | A list with a 64-character email and a name with diacritics. | Stress-test finds the overflow and wrong initials with the offending value. | Fixture added only if edits are authorised. |
+| V6 | A list with a 64-character email and a name with diacritics. | Edge-case check S1 finds the overflow and wrong initials with the offending value. | Fixture added only if edits are authorised. |
 | V7 | A pointer-down handler that submits a transfer. | Fail M2. | |
 | V8 | Fix applied for V1. | Recheck of A3, D10, R2 and R3 at both widths recorded. | Proposed fix not counted as a pass until rechecked. |
 | V9 | One-line copy change in a modal; ask to "check this". | Standard-or-lighter depth stated; modal items checked; no data-robustness or mobile report. | Unchecked items listed as Not checked, not Pass. |

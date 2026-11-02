@@ -30,7 +30,7 @@ Fix: render the rows as a two-column label/value grid on the modal's own surface
 
 - R3, R4: validation error, failure and instructions steps. No fixture reaches these states and the failure path needs a real submission, which was not performed.
 - R2 at a short viewport with the keyboard open: no device or keyboard emulation was available.
-- M3: touch feel and URL-bar behaviour need a phone.
+- M4: touch feel and browser-bar behaviour need a phone.
 
 ## Not applicable
 
